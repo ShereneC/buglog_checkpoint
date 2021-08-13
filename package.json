@@ -1,0 +1,16 @@
+
+  {
+    "name": "buglog_checkpoint",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "npm run setup:server",
+      "setup:app": "npm run setup:server && npm run setup:client",
+      "setup:client": "cd buglog_checkpoint.client && npm i",
+      "setup:server": "cd buglog_checkpoint && npm i",
+      "start": "node buglog_checkpoint/index.js"
+    },
+    "engines": {
+      "node": "^14.17.0"
+    }
+  }
+  
