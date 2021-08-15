@@ -73,7 +73,7 @@ export default {
       notes,
       async setActiveBug() {
         try {
-          // await bugsService.setActiveBug(props.bug.id) - Taking this out to see if I can get an empty object on the page
+          await bugsService.setActiveBug(props.bug.id)
           router.push({ name: 'BugDetails', params: { bugId: props.bug.id } })
         } catch (error) {
           Pop.toast(error, 'error')
