@@ -31,7 +31,8 @@
       </div>
     </div>
     <div class="col-2 text-light d-flex align-items-center justify-content-end">
-      <p class="m-0 pointer" :title="'See Details for ' + bug.title" @click="openActiveBug">
+      <!-- NOTE  This router link should take you to the active bug page when you click See Details  Did I put this in right? Actually, I took it out and will use a router push when they click on setActive Bug-->
+      <p class="m-0 pointer" :title="'See Details for ' + bug.title" @click="setActiveBug">
         <span class="text-dark">See Details 🐛</span>
       </p>
     </div>
@@ -51,6 +52,7 @@ import { computed, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { bugsService } from '../services/BugsService'
+import { router } from '../router'
 export default {
   props: {
     bug: {
@@ -68,7 +70,15 @@ export default {
       }
     })
     return {
-      notes
+      notes,
+      async setActiveBug() {
+        try {
+          // await bugsService.setActiveBug(props.bug.id) - Taking this out to see if I can get an empty object on the page
+          router.push({ name: 'BugDetails', params: { bugId: props.bug.id } })
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 

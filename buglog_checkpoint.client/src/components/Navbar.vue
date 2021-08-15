@@ -24,6 +24,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <!-- NOTE  Example of router link -->
           <router-link :to="{ name: 'Home' }" class="nav-link">
             Home
           </router-link>
