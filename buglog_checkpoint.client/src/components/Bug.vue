@@ -1,6 +1,14 @@
 <template>
-  <div class="row shadow border mb-2 mx-3">
+  <div class="row shadow border border-primary mb-2 mx-3">
     <div class="col-10 d-flex align-items-center">
+      <button class="btn mr-2"
+              type="button"
+              data-toggle="collapse"
+              :data-target="'#collapse' + bug.id"
+              :title="'Expand '+bug.title+' Details'"
+      >
+        <span class="fas fa-chevron-down text-white"></span>
+      </button>
       <div class="div mx-2 mb-0">
         <h3 class="mb-0 p-1">
           {{ bug.title }}
@@ -28,9 +36,21 @@
       </p>
     </div>
   </div>
+  <!-- Collapsible -->
+  <div class="collapse" :id="'collapse' + bug.id">
+    <div class="row bg-dark shadow mx-2 pb-3">
+      <div class="col-12 mt-3" v-for="n in notes" :key="n.id">
+        <Note :note="n" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { computed, watchEffect } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import Pop from '../utils/Notifier'
+import { bugsService } from '../services/BugsService'
 export default {
   props: {
     bug: {
@@ -38,11 +58,20 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    const notes = computed(() => AppState.notes[props.bug.id] || [])
+    watchEffect(async() => {
+      try {
+        await bugsService.getNotesByBugId(props.bug.id)
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
     return {
+      notes
     }
-  },
-  components: {}
+  }
+
 }
 </script>
 

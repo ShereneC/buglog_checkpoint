@@ -8,6 +8,11 @@ class BugsService {
     AppState.bugs = res.data
   }
 
+  async getNotesByBugId(id) {
+    const res = await api.get('api/bugs/' + id + '/notes')
+    AppState.notes[id] = res.data
+  }
+
   async closeBug(newBug, bugId) {
     const res = await api.put('api/bugs/' + bugId, newBug)
     return res.data.bugId
