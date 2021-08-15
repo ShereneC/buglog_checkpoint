@@ -1,25 +1,42 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">Vue 3 Starter</span>
-    </h1>
+  <div class="home col-12 shadow">
+    <!-- Bug heading and create bug button -->
+    <div class="row align-items-center mx-2">
+      <div class="col-6">
+        <div class="mt-3 ml-3">
+          <h2 class="m-0">
+            Bugs
+          </h2>
+          <p>This is a list of all your bugs</p>
+        </div>
+      </div>
+      <div class="col-6 d-flex justify-content-end">
+        <button type="button"
+                class="btn btn-outline-success shadow"
+                data-toggle="modal"
+                data-target="#createBugModal"
+                title="Create Bug Button"
+        >
+          + New Bug
+        </button>
+      </div>
+    </div>
+    <Bug v-for="b in bugs" :key="b.id" :bug="b" />
   </div>
+  <!-- <CreateProjectModal /> -->
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
 export default {
-  name: 'Home'
+  setup() {
+    return {
+      bugs: computed(() => AppState.bugs)
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-.home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
-}
 </style>

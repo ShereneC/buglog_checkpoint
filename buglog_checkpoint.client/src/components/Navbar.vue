@@ -2,11 +2,12 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
+        <!-- <img
           alt="logo"
           src="../assets/img/cw-logo.png"
           height="45"
-        />
+        /> -->
+        <h1>Bug Log</h1>
       </div>
     </router-link>
     <button

@@ -1,15 +1,12 @@
 <template>
-  <header>
-    <Navbar />
+  <header class="row">
+    <div class="col-12 p-0">
+      <Navbar />
+    </div>
   </header>
-  <main>
+  <main class="row">
     <router-view />
   </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
-    </div>
-  </footer>
 </template>
 
 <script>
