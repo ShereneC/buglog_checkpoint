@@ -38,8 +38,8 @@
   </div>
   <!-- Collapsible -->
   <div class="collapse" :id="'collapse' + bug.id">
-    <div class="row bg-dark shadow mx-2 pb-3">
-      <div class="col-12 mt-3" v-for="n in notes" :key="n.id">
+    <div class="row bg-light shadow mx-4 pb-3" v-for="n in notes" :key="n.id">
+      <div class="col-12 mt-3">
         <Note :note="n" />
       </div>
     </div>
