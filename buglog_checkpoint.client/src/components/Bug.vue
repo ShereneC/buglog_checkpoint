@@ -31,12 +31,12 @@
       </div>
     </div>
     <div class="col-2 text-light d-flex align-items-center justify-content-end">
-      <p class="m-0 pointer" :title="'See Details for ' + bug.title" @click="openBug">
+      <p class="m-0 pointer" :title="'See Details for ' + bug.title" @click="openActiveBug">
         <span class="text-dark">See Details 🐛</span>
       </p>
     </div>
   </div>
-  <!-- Collapsible -->
+  <!-- Collapsible for Notes -->
   <div class="collapse" :id="'collapse' + bug.id">
     <div class="row bg-light shadow mx-4 pb-3" v-for="n in notes" :key="n.id">
       <div class="col-12 mt-3">

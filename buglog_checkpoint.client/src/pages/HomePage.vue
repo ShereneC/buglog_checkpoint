@@ -23,7 +23,7 @@
     </div>
     <Bug v-for="b in bugs" :key="b.id" :bug="b" />
   </div>
-  <!-- <CreateProjectModal /> -->
+  <CreateBugModal />
 </template>
 
 <script>

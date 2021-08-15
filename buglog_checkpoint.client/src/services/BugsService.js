@@ -13,6 +13,14 @@ class BugsService {
     AppState.notes[id] = res.data
   }
 
+  async createBug(newBug) {
+    const res = await api.post('api/bugs', newBug)
+    // AppState.activeBug = res.data //  NOTE need to create an active bug
+    this.getAllBugs()
+    return res.data.id
+    // why am I returning the id?  Where does it go?  Copied from Sprintr creatProject
+  }
+
   async closeBug(newBug, bugId) {
     const res = await api.put('api/bugs/' + bugId, newBug)
     return res.data.bugId
