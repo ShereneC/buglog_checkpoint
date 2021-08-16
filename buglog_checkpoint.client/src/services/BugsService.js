@@ -5,7 +5,28 @@ import { api } from './AxiosService'
 class BugsService {
   async getAllBugs(query = {}) {
     const res = await api.get('api/bugs' + convertToQuery(query))
+    // I feel like I should be able to put something in here that will trigger the filter if something is selected, but I can't figure it out.
     AppState.bugs = res.data
+  }
+
+  // NOTE doing the show functions here is making A LOT of calls to the network - I know there must be a better way!!!
+  async showOpen() {
+    this.getAllBugs()
+    await api.get('api/bugs')
+    // AppState.bugs = res.data
+    AppState.bugs = AppState.bugs.filter(b => b.closed !== true)
+  }
+
+  async showClosed() {
+    this.getAllBugs()
+    await api.get('api/bugs')
+    // AppState.bugs = res.data
+    AppState.bugs = AppState.bugs.filter(b => b.closed === true)
+  }
+
+  async getBugById(id) {
+    const res = await api.get('api/bugs/' + id)
+    AppState.activeBug = res.data
   }
 
   async getNotesByBugId(id) {

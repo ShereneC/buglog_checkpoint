@@ -21,18 +21,62 @@
         </button>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary mb-2 ml-1" @click="showOpen">
+          Show Open
+        </button>
+        <button type="button" class="btn btn-primary mb-2 ml-1" @click="showAll">
+          Show All
+        </button>
+        <button type="button" class="btn btn-primary mb-2 ml-1" @click="showClosed">
+          Show Closed
+        </button>
+      </div>
+    </div>
     <Bug v-for="b in bugs" :key="b.id" :bug="b" />
   </div>
   <CreateBugModal />
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { bugsService } from '../services/BugsService'
+import Pop from '../utils/Notifier'
 export default {
   setup() {
+    // when this page loads go get   await bugsService.getAllBugs()  Mark's notes to me
+    onMounted(async() => {
+      try {
+        await bugsService.getAllBugs()
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
     return {
-      bugs: computed(() => AppState.bugs)
+      bugs: computed(() => AppState.bugs),
+      async showOpen() {
+        try {
+          await bugsService.showOpen()
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async showClosed() {
+        try {
+          await bugsService.showClosed()
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async showAll() {
+        try {
+          await bugsService.getAllBugs()
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 }

@@ -11,9 +11,9 @@ export class BugsController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getBugById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
+      .get('/:id/notes', this.getNotesByBugId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
-      .get('/:id/notes', this.getNotesByBugId)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
   }

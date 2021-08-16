@@ -26,7 +26,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   AppState.user = AuthService.user
   await accountService.getAccount()
   // NOTE What if I want them to be able to do it before they are authenticated?  Does it go in here above get Account?
-  await bugsService.getAllBugs()
+
   // NOTE if there is something you want to do once the user is authenticated, place that here
 })
 
