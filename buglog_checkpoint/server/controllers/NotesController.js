@@ -11,8 +11,7 @@ export class NotesController extends BaseController {
       //  Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
-
-    // .delete('/:id', this.delete)
+      .delete('/:id', this.destroy)
   }
 
   async create(req, res, next) {
@@ -26,12 +25,12 @@ export class NotesController extends BaseController {
     }
   }
 
-  // async destroy(req, res, next) {
-  //   try {
-  //     await notesService.destroy(req.params.id)
-  //     res.send({ message: 'Successfully Deleted' })
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async destroy(req, res, next) {
+    try {
+      await notesService.destroy(req.params.id)
+      res.send({ message: 'Successfully Deleted' })
+    } catch (error) {
+      next(error)
+    }
+  }
 }

@@ -15,9 +15,9 @@ class NotesService {
     return notes
   }
 
-  async destroy(body) {
+  async destroy(id) {
     // passing test
-    const note = await dbContext.Notes.findByIdAndDelete(body.id)
+    const note = await dbContext.Notes.findByIdAndDelete({ _id: id })
     if (!note) {
       throw new BadRequest('Invalid Id')
     }

@@ -27,6 +27,7 @@ class BugsService {
   }
 
   async setActiveBug(id) {
+    // Looks like active bug is coming through here
     const res = await api.get('api/bugs/' + id)
     AppState.activeBug = res.data
   }

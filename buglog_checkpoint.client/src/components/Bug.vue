@@ -41,7 +41,9 @@
   <div class="collapse" :id="'collapse' + bug.id">
     <div class="row bg-light shadow mx-4 pb-3" v-for="n in notes" :key="n.id">
       <div class="col-12 mt-3">
-        <Note :note="n" />
+        <div class="row shadow border border-primary mx-3 my-2">
+          <Note :note="n" />
+        </div>
       </div>
     </div>
   </div>
