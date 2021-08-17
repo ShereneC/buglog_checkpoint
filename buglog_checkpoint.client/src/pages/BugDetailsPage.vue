@@ -14,10 +14,10 @@
               ✏ Edit Bug
             </h6> -->
             <button type="button"
-                    class="btn btn-outline-success shadow"
+                    class="btn btn-outline-success shadow text-light"
                     data-toggle="modal"
                     data-target="#editBugModal"
-                    title="Create Bug Button"
+                    title="Edit Bug Button"
                     v-if="!activeBug.closed"
             >
               ✏ Edit Bug
@@ -37,7 +37,7 @@
               <h4 class="m-0 p-0">
                 <b>OPEN</b>
               </h4>
-              <p class="pl-1 m-0" @click="closeBug">
+              <p class="pl-1 m-0 pointer" title="Close Bug Button" @click="closeBug">
                 Click to Close
               </p>
             </div>

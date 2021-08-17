@@ -27,6 +27,8 @@
                      class="form-control"
                      placeholder="Bug Title..."
                      aria-describedby="inputBugTitle"
+                     minlength="3"
+                     maxlength="50"
                      required
               >
               <small id="inputBugTitle" class="text-muted">Input Bug Title</small>
@@ -36,9 +38,11 @@
               <input type="text"
                      name="description"
                      v-model="state.newBug.description"
-                     class="form-control"
+                     class="form-control text-break"
                      placeholder="Bug Description..."
                      aria-describedby="inputBugDescription"
+                     minlength="3"
+                     maxlength="50"
                      required
               >
               <small id="inputBugDescription" class="text-muted">Input Bug Description</small>
@@ -62,12 +66,10 @@ import { reactive } from '@vue/reactivity'
 import Pop from '../utils/Notifier'
 import { bugsService } from '../services/BugsService'
 import $ from 'jquery'
-import { useRoute } from 'vue-router'
 import { router } from '../router'
 // import { router } from '../router'
 export default {
   setup() {
-    const route = useRoute()
     const state = reactive({
       newBug: {
       }
@@ -79,10 +81,7 @@ export default {
           const newId = await bugsService.createBug(state.newBug)
           state.newBug = {}
           $('#createBugModal').modal('hide')
-          // router.push({ name: 'BacklogPage', params: { projectId: newId } })  // NOTE need to create bug details page
-          // router.push({ name: 'BugDetails', params: { bugId: route.params.bugId } })
           Pop.toast('Successfully Created', 'success')
-          // await bugsService.setActiveBug(state.newBug.bugId)
           await router.push({ name: 'BugDetails', params: { bugId: newId } })
         } catch (error) {
           Pop.toast(error, 'error')

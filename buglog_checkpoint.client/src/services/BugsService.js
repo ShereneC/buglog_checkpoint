@@ -44,6 +44,8 @@ class BugsService {
 
   async editBug(newBug, bugId) {
     const res = await api.put('api/bugs/' + bugId, newBug)
+    this.getBugById(bugId)
+    this.getNotesByBugId(bugId)
     return res.data.bugId
   }
 

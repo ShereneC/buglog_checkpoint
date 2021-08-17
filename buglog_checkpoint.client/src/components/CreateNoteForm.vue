@@ -6,9 +6,11 @@
       <input type="text"
              name="body"
              v-model="state.newNote.body"
-             class="form-control"
+             class="form-control text-break"
              placeholder="Type New Note Here..."
              aria-describedby="inputNoteBody"
+             minlength="3"
+             maxlength="50"
              required
       >
       <small id="inputNoteBody" class="text-muted">Input Note Description</small>

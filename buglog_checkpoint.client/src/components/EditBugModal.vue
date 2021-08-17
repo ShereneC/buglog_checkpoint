@@ -27,6 +27,8 @@
                      class="form-control"
                      :placeholder="activeBug.title"
                      aria-describedby="inputBugTitle"
+                     minlength="3"
+                     maxlength="50"
                      required
               >
               <small id="inputBugTitle" class="text-muted">Input Bug Title</small>
@@ -36,44 +38,15 @@
               <input type="text"
                      name="description"
                      v-model="state.newBug.description"
-                     class="form-control"
+                     class="form-control  text-break"
                      :placeholder="activeBug.description"
                      aria-describedby="inputBugDescription"
+                     minlength="3"
+                     maxlength="300"
                      required
               >
               <small id="inputBugDescription" class="text-muted">Input Bug Description</small>
             </div>
-            <!-- status input -->
-            <div class="form-group">
-              <select
-                name="status"
-                v-model="state.newBug.closed"
-                class="form-control"
-                :aria-describedby="state.newBug.title+'BugStatus'"
-                required
-              >
-                <option value="true">
-                  Closed
-                </option>
-                <option value="false">
-                  Open
-                </option>
-              </select>
-              <small :id="state.newBug.closed+'BugStatus'" class="text-muted">Input Bug Status</small>
-            </div>
-            <!-- End status input -->
-            <!-- startDate input -->
-            <div class="form-group">
-              <input type="date"
-                     name="closedDate"
-                     v-model="state.newBug.closedDate"
-                     class="form-control"
-                     placeholder="Bug Closed Date..."
-                     aria-describedby="inputClosedBugDate"
-              >
-              <small id="inputClosedBugDate" class="text-muted">Input Closed Bug Date</small>
-            </div>
-            <!-- endDate input -->
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
@@ -111,7 +84,8 @@ export default {
         try {
           await bugsService.editBug(state.newBug, state.newBug.bugId)
           state.newBug = {}
-          $('editBugModal').modal('hide')
+          $('#editBugModal').modal('hide')
+          Pop.toast('Successfully Edited', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
         }
