@@ -42,8 +42,16 @@ class BugsService {
     // why am I returning the id?  Where does it go?  Copied from Sprintr creatProject
   }
 
-  async closeBug(newBug, bugId) {
+  async editBug(newBug, bugId) {
     const res = await api.put('api/bugs/' + bugId, newBug)
+    return res.data.bugId
+  }
+
+  async closeBug(bugId) {
+    const res = await api.delete('api/bugs/' + bugId)
+    // NOTE trying to get it to show on the page after it is closed what if I put..
+    this.getBugById(bugId)
+    this.getNotesByBugId(bugId)
     return res.data.bugId
   }
 

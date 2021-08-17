@@ -43,37 +43,7 @@
               >
               <small id="inputBugDescription" class="text-muted">Input Bug Description</small>
             </div>
-            <!-- status input -->
-            <div class="form-group">
-              <select
-                name="status"
-                v-model="state.newBug.closed"
-                class="form-control"
-                :aria-describedby="state.newBug.title+'BugStatus'"
-                required
-              >
-                <option value="true">
-                  Closed
-                </option>
-                <option value="false">
-                  Open
-                </option>
-              </select>
-              <small :id="state.newBug.closed+'BugStatus'" class="text-muted">Input Bug Status</small>
-            </div>
-            <!-- End status input -->
-            <!-- startDate input -->
-            <div class="form-group">
-              <input type="date"
-                     name="closedDate"
-                     v-model="state.newBug.closedDate"
-                     class="form-control"
-                     placeholder="Bug Closed Date..."
-                     aria-describedby="inputClosedBugDate"
-              >
-              <small id="inputClosedBugDate" class="text-muted">Input Closed Bug Date</small>
-            </div>
-            <!-- endDate input -->
+            <!-- Took out the status option and Date selector - I think not needed because there is a separate function for selecting close data nd it should automatically put a date.now on it. -->
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
@@ -92,22 +62,28 @@ import { reactive } from '@vue/reactivity'
 import Pop from '../utils/Notifier'
 import { bugsService } from '../services/BugsService'
 import $ from 'jquery'
+import { useRoute } from 'vue-router'
+import { router } from '../router'
 // import { router } from '../router'
 export default {
   setup() {
+    const route = useRoute()
     const state = reactive({
-      newBug: {}
+      newBug: {
+      }
     })
     return {
       state,
       async createBug() {
         try {
-          // const newId =  // this goes with the push below
-          await bugsService.createBug(state.newBug)
+          const newId = await bugsService.createBug(state.newBug)
           state.newBug = {}
           $('#createBugModal').modal('hide')
           // router.push({ name: 'BacklogPage', params: { projectId: newId } })  // NOTE need to create bug details page
+          // router.push({ name: 'BugDetails', params: { bugId: route.params.bugId } })
           Pop.toast('Successfully Created', 'success')
+          // await bugsService.setActiveBug(state.newBug.bugId)
+          await router.push({ name: 'BugDetails', params: { bugId: newId } })
         } catch (error) {
           Pop.toast(error, 'error')
         }

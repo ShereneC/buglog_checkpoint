@@ -37,9 +37,9 @@
               <h4 class="m-0 p-0">
                 <b>OPEN</b>
               </h4>
-              <!-- <p class="pl-1 m-0" @click="closeBug">
+              <p class="pl-1 m-0" @click="closeBug">
                 Click to Close
-              </p> -->
+              </p>
             </div>
           </div>
         </div>
@@ -98,7 +98,8 @@ export default {
     const notes = computed(() => AppState.notes[route.params.bugId] || [])
     watchEffect(async() => {
       try {
-        // await bugsService.getBugById  - recommended to have this
+        // await bugsService.getBugById
+        // - recommended to have this
         if (route.params.bugId) {
           await bugsService.getNotesByBugId(route.params.bugId)
         }
@@ -111,12 +112,12 @@ export default {
       notes,
       async closeBug() {
         try {
-          activeBug.closed = !activeBug.closed
-          await bugsService.closeBug(activeBug, activeBug.id)
+          await bugsService.closeBug(activeBug.value.id)
         } catch (error) {
           Pop.toast(error, 'error')
         }
       }
+
     }
   }
 }

@@ -101,7 +101,7 @@ export default {
     const route = useRoute()
     const state = reactive({
       newBug: {
-        bugId: (route.params.id)
+        bugId: (route.params.bugId)
       }
     })
     return {
@@ -109,7 +109,7 @@ export default {
       state,
       async editBug() {
         try {
-          await bugsService.editBug(state.newBug)
+          await bugsService.editBug(state.newBug, state.newBug.bugId)
           state.newBug = {}
           $('editBugModal').modal('hide')
         } catch (error) {
