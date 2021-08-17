@@ -15,13 +15,17 @@ class NotesService {
     return notes
   }
 
-  async destroy(id) {
+  async destroy(id, userId) {
     // passing test
-    const note = await dbContext.Notes.findByIdAndDelete({ _id: id })
+    const note = await dbContext.Notes.findById(id).populate('creator')
     if (!note) {
       throw new BadRequest('Invalid Id')
+    } else {
+      if (userId === note.creator.id) {
+        const toDie = await dbContext.Notes.findByIdAndDelete({ _id: id })
+        return toDie
+      }
     }
-    return note
   }
 }
 

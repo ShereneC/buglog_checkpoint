@@ -24,10 +24,18 @@
           <b>OPEN</b>
         </p>
       </div>
-      <div class="div mx-3 mb-0">
+      <div class="div mx-3 mb-0 mr-auto">
         <h5 class="mb-0">
           {{ bug.description }}
         </h5>
+      </div>
+      <div class="div mx-3 mb-0">
+        <p class="mb-0">
+          <small>
+            Last Updated
+            {{ updatedDate }}
+          </small>
+        </p>
       </div>
     </div>
     <div class="col-2 text-light d-flex align-items-center justify-content-end">
@@ -73,6 +81,13 @@ export default {
     })
     return {
       notes,
+
+      updatedDate: computed(() => {
+        const d = new Date(props.bug.updatedAt)
+        return new Intl.DateTimeFormat('en-US').format(d)
+        // new TimeAgo(d)
+      }),
+
       async setActiveBug() {
         try {
           await bugsService.setActiveBug(props.bug.id)

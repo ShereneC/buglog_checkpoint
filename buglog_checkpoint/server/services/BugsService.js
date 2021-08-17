@@ -28,6 +28,8 @@ class BugsService {
       delete body.closed
       const updated = await dbContext.Bugs.findByIdAndUpdate(body.id, body, { new: true })
       return updated
+    } else {
+      throw new BadRequest('Cannot be edited - Bug is closed!')
     }
   }
 
@@ -41,7 +43,7 @@ class BugsService {
         // const d = new Date(props.project.createdAt)
         // return new Intl.DateTimeFormat('en-US').format(d)
 
-        const closed = await dbContext.Bugs.findByIdAndUpdate(id, { closed: true, closedDate: Intl.DateTimeFormat('en-US').format(new Date(Date.now())) }, { new: true })
+        const closed = await dbContext.Bugs.findByIdAndUpdate(id, { closed: true, closedDate: Intl.DateTimeFormat('en-US').format(new Date(Date.now())), updatedAt: Intl.DateTimeFormat('en-US').format(new Date(Date.now())) }, { new: true })
         // NOTE finds it by id, then sends in the changed object, then which one you want to keep
         return closed
       } else {

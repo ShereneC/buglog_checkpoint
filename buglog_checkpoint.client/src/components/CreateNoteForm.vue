@@ -41,7 +41,7 @@ export default {
         try {
           // const newId =  // this goes with the push below
           await notesService.createNote(state.newNote)
-          state.newNote = {}
+          state.newNote = { }
           // Do I need state.newNote = { bugId: route.params.bugId}
           Pop.toast('Successfully Created', 'success')
         } catch (error) {
