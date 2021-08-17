@@ -1,8 +1,10 @@
 <template>
   <div class="col-12 d-flex align-items-center">
-    <p class="m-0 mr-2 p-1 pointer" title="Delete Note" @click="deleteNote" v-if="account.id === note.creatorId">
-      <span class="">X</span>
-    </p>
+    <div v-if="account.id === note.creatorId">
+      <p class="m-0 mr-2 p-1 pointer" title="Delete Note" @click="deleteNote" v-if="!activeBug.closed">
+        <span class="">X</span>
+      </p>
+    </div>
     <!-- <h5 class="m-0 mr-auto pointer"
           data-toggle="modal"
           :data-target="'#taskDetailsModal'+ task.id"
@@ -35,6 +37,7 @@ export default {
   setup(props) {
     return {
       account: computed(() => AppState.account),
+      activeBug: computed(() => AppState.activeBug),
       async deleteNote() {
         if (await Pop.confirm()) {
           try {

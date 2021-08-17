@@ -21,9 +21,12 @@ class NotesService {
     if (!note) {
       throw new BadRequest('Invalid Id')
     } else {
+      // hmmmm
       if (userId === note.creator.id) {
         const toDie = await dbContext.Notes.findByIdAndDelete({ _id: id })
         return toDie
+      } else {
+        throw new BadRequest('Not Allowed for this user')
       }
     }
   }
