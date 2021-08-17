@@ -13,15 +13,17 @@
             <!-- <h6 @click="editBug" v-if="!activeBug.closed">
               ✏ Edit Bug
             </h6> -->
-            <button type="button"
-                    class="btn btn-outline-success shadow text-light"
-                    data-toggle="modal"
-                    data-target="#editBugModal"
-                    title="Edit Bug Button"
-                    v-if="!activeBug.closed"
-            >
-              ✏ Edit Bug
-            </button>
+            <div v-if="account.id === activeBug.creatorId">
+              <button type="button"
+                      class="btn btn-outline-success shadow text-light"
+                      data-toggle="modal"
+                      data-target="#editBugModal"
+                      title="Edit Bug Button"
+                      v-if="!activeBug.closed"
+              >
+                ✏ Edit Bug
+              </button>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -110,6 +112,7 @@ export default {
     return {
       activeBug,
       notes,
+      account: computed(() => AppState.account),
       async closeBug() {
         try {
           await bugsService.closeBug(activeBug.value.id)
