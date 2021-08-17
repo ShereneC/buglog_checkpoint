@@ -41,7 +41,8 @@ export default {
         try {
           // const newId =  // this goes with the push below
           await notesService.createNote(state.newNote)
-          state.newNote = { }
+          state.newNote = { bugId: route.params.bugId }
+          // NOTE I have to put the bugId in here to have it let me create a new note, but there are times when this needs to be empty to let you create a new object - a little confused here.
           // Do I need state.newNote = { bugId: route.params.bugId}
           Pop.toast('Successfully Created', 'success')
         } catch (error) {

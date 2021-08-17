@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 d-flex align-items-center">
-    <p class="m-0 mr-2 p-1 pointer" title="Delete Note" @click="deleteNote">
+    <p class="m-0 mr-2 p-1 pointer" title="Delete Note" @click="deleteNote" v-if="account.id === note.creatorId">
       <span class="">X</span>
     </p>
     <!-- <h5 class="m-0 mr-auto pointer"
@@ -24,14 +24,17 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
 import { notesService } from '../services/NotesService'
 import Pop from '../utils/Notifier'
+import { AppState } from '../AppState'
 export default {
   props: {
     note: { type: Object, required: true }
   },
   setup(props) {
     return {
+      account: computed(() => AppState.account),
       async deleteNote() {
         if (await Pop.confirm()) {
           try {
