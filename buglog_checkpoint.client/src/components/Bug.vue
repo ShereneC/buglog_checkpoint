@@ -85,7 +85,6 @@ export default {
       updatedDate: computed(() => {
         const d = new Date(props.bug.updatedAt)
         return new Intl.DateTimeFormat('en-US').format(d)
-        // new TimeAgo(d)
       }),
 
       async setActiveBug() {

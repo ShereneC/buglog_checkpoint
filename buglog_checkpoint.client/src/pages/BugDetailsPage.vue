@@ -35,10 +35,13 @@
                 <b>CLOSED</b> Date: {{ activeBug.closedDate }}
               </h4>
             </div>
-            <div class="div text-red text-shadow m-0 p-0 d-flex align-items-center" v-else>
+            <div class="div text-red text-shadow m-0 p-0 d-flex align-items-center justify-content-around" v-else>
               <h4 class="m-0 p-0">
                 <b>OPEN</b>
               </h4>
+              <p v-if="activeBug.updatedAt">
+                <small>Last Updated {{ updatedDate }}</small>
+              </p>
               <p class="pl-1 m-0 pointer" title="Close Bug Button" @click="closeBug">
                 Click to Close
               </p>
@@ -82,6 +85,7 @@ import { AppState } from '../AppState'
 import { bugsService } from '../services/BugsService'
 import Pop from '../utils/Notifier'
 import { useRoute } from 'vue-router'
+import { logger } from '../utils/Logger'
 export default {
   setup() {
     const route = useRoute()
@@ -112,6 +116,17 @@ export default {
     return {
       activeBug,
       notes,
+
+      updatedDate: computed(() => {
+        // logger.log('activeBug date: ', activeBug.value.createdAt)
+        // NOTE Mick helped me on this - had to put in .value because I brought activeBug in wrong.
+        if (activeBug.value.updatedAt) {
+          const d = new Date(activeBug.value.updatedAt)
+          return new Intl.DateTimeFormat('en-US').format(d)
+        } else {
+          return 0
+        }
+      }),
       account: computed(() => AppState.account),
       async closeBug() {
         try {
