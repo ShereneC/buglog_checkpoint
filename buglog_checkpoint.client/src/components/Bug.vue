@@ -7,7 +7,7 @@
               :data-target="'#collapse' + bug.id"
               :title="'Expand '+bug.title+' Details'"
       >
-        <span class="fas fa-chevron-down text-white"></span>
+        <span class="fas fa-chevron-down text-dark"></span>
       </button>
       <div class="div mx-2 mb-0">
         <h3 class="mb-0 p-1">
