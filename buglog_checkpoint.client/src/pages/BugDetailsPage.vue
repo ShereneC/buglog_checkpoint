@@ -42,7 +42,7 @@
               <p v-if="activeBug.updatedAt">
                 <small>Last Updated {{ updatedDate }}</small>
               </p>
-              <p class="pl-1 m-0 pointer" title="Close Bug Button" @click="closeBug">
+              <p class="pl-1 m-0 pointer" title="Close Bug Button" @click="closeBug" v-if="account.id === activeBug.creatorId">
                 Click to Close
               </p>
             </div>
