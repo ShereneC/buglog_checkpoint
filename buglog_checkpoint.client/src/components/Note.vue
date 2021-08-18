@@ -5,11 +5,6 @@
         <span class="">X</span>
       </p>
     </div>
-    <!-- <h5 class="m-0 mr-auto pointer"
-          data-toggle="modal"
-          :data-target="'#taskDetailsModal'+ task.id"
-          title="See Task Details"
-      > -->
     <h6 class="p-1 flex-grow-1 text-break">
       <b>{{ note.body }}</b>
     </h6>
@@ -17,12 +12,10 @@
     <p class="m-0 p-1">
       <img class="profile-img mr-3" :src="note.creator.picture" :alt="note.creator.name">
     </p>
-    <p class="my-0 mr-3 p-1">
+    <p class="my-0 mr-3 p-1 d-sm-none d-md-block">
       <b>{{ note.creator.name }}</b>
     </p>
   </div>
-
-  <!-- <TaskDetailsModal :task="task" /> -->
 </template>
 
 <script>

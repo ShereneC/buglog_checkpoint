@@ -1,5 +1,5 @@
 <template>
-  <div class="about text-center">
+  <div class="about col d-flex flex-column align-items-center">
     <h1>Welcome {{ account.name }}</h1>
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>

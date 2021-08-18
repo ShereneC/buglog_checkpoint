@@ -39,8 +39,8 @@
               <h4 class="m-0 p-0">
                 <b>OPEN</b>
               </h4>
-              <p v-if="activeBug.updatedAt">
-                <small>Last Updated {{ updatedDate }}</small>
+              <p class="m-0" v-if="activeBug.updatedAt">
+                Last Updated {{ updatedDate }}
               </p>
               <p class="pl-1 m-0 pointer" title="Close Bug Button" @click="closeBug" v-if="account.id === activeBug.creatorId">
                 Click to Close
@@ -59,7 +59,7 @@
     <!-- Add note form -->
     <div class="row bg-light shadow mt-3 my-2">
       <div class="col-2 mt-2">
-        <h3 class="border">
+        <h3 class="">
           Notes:
         </h3>
       </div>

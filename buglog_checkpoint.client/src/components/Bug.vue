@@ -1,7 +1,7 @@
 <template>
   <div class="row shadow border border-primary mb-2 mx-3">
-    <div class="col-10 d-flex align-items-center">
-      <button class="btn mr-2"
+    <div class="col-12 col-md-8 d-flex align-items-center">
+      <button class="btn p-0 m-0 d-sm-none d-md-block"
               type="button"
               data-toggle="collapse"
               :data-target="'#collapse' + bug.id"
@@ -10,9 +10,9 @@
         <span class="fas fa-chevron-down text-dark"></span>
       </button>
       <div class="div mx-2 mb-0">
-        <h3 class="mb-0 p-1">
+        <h4 class="mb-0 p-1">
           {{ bug.title }}
-        </h3>
+        </h4>
       </div>
       <div class="div text-green" v-if="bug.closed">
         <p class="m-0 p-0">
@@ -25,20 +25,22 @@
         </p>
       </div>
       <div class="div mx-3 mb-0 mr-auto">
-        <h5 class="mb-0">
+        <h6 class="mb-0">
           {{ bug.description }}
-        </h5>
+        </h6>
       </div>
+    </div>
+    <div class="col-12 col-md-2">
       <div class="div mx-3 mb-0">
-        <p class="mb-0">
+        <p class="mb-0 p-0">
           <small>
-            Last Updated
+            Updated
             {{ updatedDate }}
           </small>
         </p>
       </div>
     </div>
-    <div class="col-2 text-light d-flex align-items-center justify-content-end">
+    <div class="col-12 col-md-2 text-light d-flex align-items-center justify-content-end">
       <!-- NOTE  This router link should take you to the active bug page when you click See Details  Did I put this in right? Actually, I took it out and will use a router push when they click on setActive Bug-->
       <p class="m-0 pointer" :title="'See Details for ' + bug.title" @click="setActiveBug">
         <span class="text-dark">See Details 🐛</span>
@@ -48,11 +50,11 @@
   <!-- Collapsible for Notes -->
   <div class="collapse" :id="'collapse' + bug.id">
     <div class="row bg-light shadow mx-4 pb-3" v-for="n in notes" :key="n.id">
-      <div class="col-12 mt-3">
-        <div class="row shadow border border-primary mx-3 my-2">
-          <Note :note="n" />
-        </div>
-      </div>
+      <!-- <div class="col-12 mt-3">
+        <div class="row shadow border border-primary mx-3 my-2"> -->
+      <Note :note="n" />
+      <!-- </div>
+      </div> -->
     </div>
   </div>
 </template>
