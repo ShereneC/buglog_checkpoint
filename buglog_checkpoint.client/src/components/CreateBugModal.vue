@@ -47,7 +47,6 @@
               >
               <small id="inputBugDescription" class="text-muted">Input Bug Description</small>
             </div>
-            <!-- Took out the status option and Date selector - I think not needed because there is a separate function for selecting close data nd it should automatically put a date.now on it. -->
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
@@ -67,7 +66,7 @@ import Pop from '../utils/Notifier'
 import { bugsService } from '../services/BugsService'
 import $ from 'jquery'
 import { router } from '../router'
-// import { router } from '../router'
+
 export default {
   setup() {
     const state = reactive({

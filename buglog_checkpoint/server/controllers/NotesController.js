@@ -28,6 +28,7 @@ export class NotesController extends BaseController {
   async destroy(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
+      // the above line is wrong to have????
       await notesService.destroy(req.params.id, req.userInfo.id)
       res.send({ message: 'Successfully Deleted' })
     } catch (error) {
