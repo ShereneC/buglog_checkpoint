@@ -1,0 +1,1 @@
+import{o as e,a as o,b as t}from"./vendor.c5379c6f.js";const a={name:"AboutPage"},u={class:"about col d-flex flex-column m-5 pr-5"},r=t("h1",null,"Bug Log",-1),s=t("h5",null,"The Bug Log is a company registered with the FCC and BBB. We exist to help you squash your bugs, whatever they might be. ",-1);a.render=function(t,a,n,l,h,c){return e(),o("div",u,[r,s])};export default a;

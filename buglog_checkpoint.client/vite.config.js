@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [vue()],
   build: {
-    outDir: '../sc-buglog/client',
+    outDir: '../buglog_checkpoint/client',
     sourcemap: false
   },
   server: {
