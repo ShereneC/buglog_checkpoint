@@ -42,7 +42,7 @@
                      placeholder="Bug Description..."
                      aria-describedby="inputBugDescription"
                      minlength="3"
-                     maxlength="50"
+                     maxlength="300"
                      required
               >
               <small id="inputBugDescription" class="text-muted">Input Bug Description</small>

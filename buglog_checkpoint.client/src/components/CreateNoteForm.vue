@@ -10,7 +10,7 @@
              placeholder="Type New Note Here..."
              aria-describedby="inputNoteBody"
              minlength="3"
-             maxlength="50"
+             maxlength="500"
              required
       >
       <small id="inputNoteBody" class="text-muted">Input Note Description</small>
