@@ -4,7 +4,7 @@
     <!-- The bug details card -->
     <div class="row mt-2">
       <div class="col-1"></div>
-      <div class="col-10 bg-primary shadow pb-3">
+      <div class="col-10 bg-gray-500 border border-primary shadow pb-3">
         <div class="row">
           <div class="col-12 d-flex align-items-center">
             <h1 class="mr-auto">
@@ -15,7 +15,7 @@
             </h6> -->
             <div v-if="account.id === activeBug.creatorId">
               <button type="button"
-                      class="btn btn-outline-success shadow text-light"
+                      class="btn btn-outline-success"
                       data-toggle="modal"
                       data-target="#editBugModal"
                       title="Edit Bug Button"

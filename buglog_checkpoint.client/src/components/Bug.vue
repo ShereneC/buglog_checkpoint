@@ -1,5 +1,5 @@
 <template>
-  <div class="row shadow border border-primary mb-2 mx-3">
+  <div class="row shadow border border-primary mt-2 mb-1 mx-3">
     <div class="col-12 col-md-8 d-flex align-items-center">
       <button class="btn p-0 m-0 d-sm-none d-md-block"
               type="button"
@@ -49,7 +49,7 @@
   </div>
   <!-- Collapsible for Notes -->
   <div class="collapse" :id="'collapse' + bug.id">
-    <div class="row bg-light shadow mx-4 pb-3" v-for="n in notes" :key="n.id">
+    <div class="row bg-light shadow mx-4" v-for="n in notes" :key="n.id">
       <!-- <div class="col-12 mt-3">
         <div class="row shadow border border-primary mx-3 my-2"> -->
       <Note :note="n" />
